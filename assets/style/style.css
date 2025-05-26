@@ -11,6 +11,8 @@ body{
     background: linear-gradient(lightblue , white);
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+    perspective: 1000px;
 }
 
 header{
@@ -26,7 +28,7 @@ header{
 }
 
 header .logo{
-    color: white;
+    color: #01878f;
     font-weight: 700;
     text-decoration: none;
     font-size: 2em;
@@ -67,6 +69,7 @@ section{
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    perspective: 1000px
 }
 
 section::before{
@@ -131,3 +134,102 @@ color: white;
 color: white;
 text-align: justify;
 }
+#bird1, #bird2 {
+    transform-style: preserve-3d;
+    position: absolute;
+    transition: transform 0.3s ease;
+    }
+    .fish {
+        position: fixed;
+        top: 50%;
+        width: 200px;
+        height: 180px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transform: translateY(-50%);
+        transition: all 1s ease;
+        z-index: 999;
+      }
+/*       
+      .shark {
+        position: fixed;
+        bottom: 10%;
+        width: 150px;
+        height: 80px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: all 1s ease;
+        z-index: 9999;
+      } */
+
+      #smallShark {
+        right: -200px; /* خارج از صفحه سمت راست */
+        bottom: 20%; /* پایین‌تر */
+        width: 150px;
+        height: 80px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0;
+      }
+      
+      #bigShark {
+        left: -200px; /* خارج از صفحه چپ */
+        bottom: 10%;
+        width: 200px;
+        height: 100px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0;
+      }
+      
+      #fishLeft {
+        left: -100px;
+      }
+      
+      #fishRight {
+        right: -100px;
+      }
+      
+      #smallShark, #bigShark {
+        opacity: 0;
+      }
+      #sky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #87ceeb; 
+        transition: background-color 1s ease;
+        z-index: -1; 
+      }
+      
+      #sun {
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        position: fixed;
+        top: 20%;
+        left: 100%;
+        transition: all 1s ease;
+        z-index: 9999;
+        filter: drop-shadow(0 0 20px yellow);
+      }
+      
+      #moon {
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-position: center;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 1s ease, left 1s ease;
+        z-index: 9999;
+        filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+      }
