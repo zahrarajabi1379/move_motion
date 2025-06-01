@@ -12,7 +12,8 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
-    perspective: 1000px;
+    perspective: 1000px;  
+    margin: 0;  
 }
 
 header{
@@ -151,37 +152,37 @@ text-align: justify;
         transition: all 1s ease;
         z-index: 999;
       }
-/*       
-      .shark {
-        position: fixed;
-        bottom: 10%;
-        width: 150px;
-        height: 80px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0;
-        transition: all 1s ease;
-        z-index: 9999;
-      } */
 
+
+      @keyframes moveRight {
+        0% { left: -50px; }
+        100% { left: 50%; }
+      }
+      
+      @keyframes moveLeft {
+        0% { left: 50%; }
+        100% { left: 100%; }
+      }
       #smallShark {
-        right: -200px; /* خارج از صفحه سمت راست */
-        bottom: 20%; /* پایین‌تر */
-        width: 150px;
-        height: 80px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0;
+        display:none; 
+        width:50px; 
+        height:30px; 
+        background:red; 
+        position:absolute; 
+        top:70%; 
+        right:-50px; 
+        z-index: 20;
       }
       
       #bigShark {
-        left: -200px; /* خارج از صفحه چپ */
-        bottom: 10%;
-        width: 200px;
-        height: 100px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0;
+        display:none; 
+        width:80px; 
+        height:40px; 
+        background:blue;
+       position:absolute; 
+       top:75%; 
+       left:-80px;
+        z-index: 20;
       }
       
       #fishLeft {
@@ -233,3 +234,61 @@ text-align: justify;
         z-index: 9999;
         filter: drop-shadow(0 0 20px rgb(255, 255, 255));
       }
+      .littleFish{
+        position: fixed; 
+        width: 30px; 
+  height: auto;
+        pointer-events: none; 
+        overflow: hidden;
+        z-index: 10
+      }
+      .poi {
+        position: absolute;
+        width: 50px; 
+        height: auto;
+        top: 60%; 
+        animation: swimRight linear infinite;
+      }
+
+@keyframes moveRight {
+  0% { left: -50px; }
+  100% { left: 100%; }
+}
+
+@keyframes moveLeft {
+  0% { right: -50px; }
+  100% { right: 100%; }
+}  
+.shag {  
+  position: absolute;  
+  bottom: 50px;  
+  width: 80px;  
+  display: none;  
+}  
+.eagle {  
+  position: absolute;  
+  top: 100px;  
+  width: 80px;  
+  cursor: pointer;
+  display: none;  
+}  
+#owl {
+  width: 50px;
+  height: auto; 
+  cursor:pointer;
+}
+ 
+@keyframes moveRight {  
+  0% { left: -80px; }  
+  100% { left: 100%; }  
+}  
+@keyframes moveLeft {  
+  0% { right: -80px; }  
+  100% { right: 100%; }  
+} 
+#lion {
+  width: 200px; 
+  height: auto;
+  position: absolute; 
+  z-index: 10; 
+}

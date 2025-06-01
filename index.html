@@ -17,17 +17,20 @@
       </ul>
     </header>
     <section>
-        <div id="sky"></div>
-        <img src="assets/image/sun.png" id="sun" alt="sun">
-        <img src="assets/image/moon.png" id="moon" alt="">
+      <div id="sky"></div>
+      <img src="assets/image/sun.png" id="sun" alt="sun" />
+      <img src="assets/image/moon.png" id="moon" alt="" />
       <img src="assets/image/clouds.png" alt="clouds" id="clouds" />
       <img src="assets/image/bird1.png" id="bird1" alt="bird" />
       <img src="assets/image/bird2.png" id="bird2" alt="bird" />
       <h2 id="text">Jungle Parallax</h2>
       <a id="btn" href="#">Explore</a>
+      <img src="assets/image/lion.png" class="shag" id="lion" alt="lion" />
+      <img src="assets/image/owl.png" class="eagle" id="owl" alt="owl" />
       <img src="assets/image/forest.png" id="forest" alt="forest" />
       <img src="assets/image/rocks.png" id="rocks" alt="rocks" />
       <img src="assets/image/water.png" id="water" alt="water" />
+      <img class="littleFish" id="fishes" src="assets/image/littleFish.png" alt="" />
     </section>
 
     <div class="sec">
@@ -81,18 +84,31 @@
         or "heard or dreamed about the Indian jungle". Other readers have
         interpreted the work as allegories of the politics and society of the
         time
-        <br>
-        <br>
-        <br>
-        <br>
+        <br />
+        <br />
+        <br />
+        <br />
       </p>
     </div>
 
     <div>
       <audio
+        id="forestSound"
+        src="assets/audios/jungle.mp3"
+        preload="auto"
+        loop
+      ></audio>
+<audio id="owlSound" src="assets/audios/owl-sound-sherlock.mp3"></audio>
+
+      <audio
         id="soundEnter"
         src="assets/audios/soundenter (2).mp3"
         preload="auto"
+      ></audio>
+      <audio
+        id="oceanSound"
+        src="assets/audios/underwater-waves-5983.mp3"
+        loop
       ></audio>
       <audio
         id="soundExit"
@@ -101,15 +117,31 @@
       ></audio>
     </div>
 
-    <img src="assets/image/fishright.png" id="fishRight" class="fish" alt="fish" />
-    <img src="assets/image/fish left.png" id="fishLeft" class="fish" alt="fish" />
-    <img src="assets/image/sgark1.png" id="smallShark" class="shark" alt="shark" />
+    <img
+      src="assets/image/fishright.png"
+      id="fishRight"
+      class="fish"
+      alt="fish"
+    />
+    <img
+      src="assets/image/fish left.png"
+      id="fishLeft"
+      class="fish"
+      alt="fish"
+    />
+    <img
+      src="assets/image/sgark1.png"
+      id="smallShark"
+      class="shark"
+      alt="shark"
+    />
     <img src="assets/image/shark.png" id="bigShark" class="shark" alt="shark" />
-    
+
     <script
-  src="https://code.jquery.com/jquery-3.7.1.min.js"
-  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-  crossorigin="anonymous"></script>
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
