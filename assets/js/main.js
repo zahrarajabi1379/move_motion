@@ -50,40 +50,7 @@ if (scrollY > viewportHeight * 0.4 && !hasEnteredWater) {
 }
 });
 
-const smallShark = document.getElementById('smallShark');
-const bigShark = document.getElementById('bigShark');
 
-function runSharksSequence() {
-  // کوسه کوچولو بیاد وسط صفحه
-  smallShark.style.display = 'block';
-  smallShark.style.right = '-50px'; // شروع از سمت راست خارج صفحه
-  smallShark.style.position = 'absolute';
-  smallShark.style.top = '70%'; // ارتفاع مناسب
-  smallShark.style.zIndex = 20;
-
-  // انیمیشن حرکت به سمت وسط (که از راست وارد میشه)
-  smallShark.style.animation = 'moveRight 4s linear forwards';
-
-  // بعد از حرکت اول، میرور کن
-  setTimeout(() => {
-    smallShark.style.transform = 'scaleX(-1)'; // میرور کردن
-  }, 4000);
-
-  // بعد، برگردن سمت راست
-  setTimeout(() => {
-    smallShark.style.animation = 'moveLeft 4s linear forwards';
-  }, 8000);
-
-  // بعد از 12 ثانیه، کوسه بزرگ بیاد سمت چپ و بره سمت راست
-  setTimeout(() => {
-    bigShark.style.display = 'block';
-    bigShark.style.left = '-80px';
-    bigShark.style.top = '75%';
-    bigShark.style.zIndex = 20;
-    bigShark.style.transform = 'scaleX(1)';
-    bigShark.style.animation = 'moveRight 4s linear forwards';
-  }, 12000);
-}
 
 function updateSunMoon() {
   const now = new Date();
@@ -183,6 +150,27 @@ function updateScene() {
   }
 }
 
+function updateSky() {
+  const now = new Date();
+  const hours = now.getHours();
+  const sky = document.getElementById('sky'); // فرض بر این است که عنصر کلی آسمان است
+
+  if (hours >= 18 || hours < 6) {
+    // از 6 بعدازظهر تا 6 صبح -> هوا تاریک
+    sky.classList.add('night');
+    sky.classList.remove('day');
+  } else {
+    // از 6 صبح تا 6 بعدازظهر -> هوا روشن
+    sky.classList.add('day');
+    sky.classList.remove('night');
+  }
+}
+
+// در هر دقیقه چک کن
+setInterval(updateSky, 60000);
+// اول کار هم اجرا کن
+updateSky();
+
 // نشان دادن جغد روی درخت
 function showOwlOnTree() {
   const owl = document.getElementById('owl');
@@ -234,13 +222,21 @@ function hideOwl() {
   document.getElementById('owl').style.display = 'none';
 }
 
+const lionImage = document.getElementById('lion');
+const lionSound = document.getElementById('lionSound');
+
+lionImage.addEventListener('click', () => {
+  lionSound.currentTime = 0; 
+  lionSound.play();
+});
+
 // نشان دادن شیر روی صخره
 function showLion() {
   const lion = document.getElementById('lion');
   lion.style.display = 'block';
   lion.style.position = 'absolute';
   lion.style.left = '10%'; 
-  lion.style.top = '310px'; 
+  lion.style.top = '320px'; 
   lion.style.width = '150px'; 
   lion.style.zIndex = 20;
 }
@@ -305,9 +301,30 @@ window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   const viewportHeight = window.innerHeight;
 
-  // مقادیر تنظیم شده، تغییر بده بر اساس صفحه‌ات
+  
+document.querySelectorAll('.littleFish, .littleFishRight').forEach(fish => {
+  function moveFish() {
+    const maxTop = 95; // بیشترین ارتفاع
+    const minTop = 85; // کمترین ارتفاع، برای حرکت روی سطح آب
+    const maxLeft = 90; // بر حسب درصد یا پیکسل
+    const minLeft = 0;
+
+    // تصادفی موقعیت جدید
+    const newTop = (Math.random() * (maxTop - minTop) + minTop) + '%';
+    const newLeft = Math.random() * (maxLeft - minLeft) + minLeft * 4 + '%';
+
+    fish.style.top = newTop;
+    fish.style.left = newLeft;
+  }
+
+  setInterval(moveFish, 1000);
+  moveFish();
+});
+
+
+
   const startWaterZone = viewportHeight * 0.6;   // شروع منطقه آب
-  const endWaterZone = viewportHeight * 0.8;     // پایان منطقه آب
+  const endWaterZone = viewportHeight * 0.9;     // پایان منطقه آب
 
   if (scrollY >= startWaterZone && scrollY <= endWaterZone) {
     // داخل منطقه آب، صدای کامل
@@ -322,60 +339,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-const container = document.getElementById('fishes');
-
-for (let i = 0; i < 15; i++) {
-  const fish = document.createElement('div');
-  fish.className = 'littleFish';
-
-  // موقعیت تصادفی در پایین صفحه
-  fish.style.bottom = (Math.random() * 80) + '%';
-
-  // زمان حرکت تصادفی (برای تفاوت در سرعت‌ها)
-  const duration = (8 + Math.random() * 4); // 8 تا 12 ثانیه
-  fish.style.animationDuration = duration + 's';
-
-  // شروع از سمت راست خارج صفحه
-  fish.style.left = '-50px';
-
-  // فاصله تصادفی برای شروع
-  fish.style.animationDelay = (Math.random() * 5) + 's';
-
-  container.appendChild(fish);
-}
-
-function activateFishes() {
-  for (let fish of fishArray) {
-    // تصادفی جهت حرکت
-    const directionRight = Math.random() > 0.5;
-
-    // فعال‌سازی و تنظیم مسیر
-    fish.style.display = 'block';
-
-    if (directionRight) {
-      fish.style.left = '-50px'; // شروع چپ صفحه
-      fish.style.right = '';
-      // تنظیم انیمیشن
-      fish.style.animation = `moveRight ${8 + Math.random() * 4}s linear infinite`;
-      fish.style.transform = 'scaleX(1)';
-    } else {
-      fish.style.right = '-50px'; // شروع سمت راست
-      fish.style.left = '';
-      fish.style.animation = `moveLeft ${8 + Math.random() * 4}s linear infinite`;
-      fish.style.transform = 'scaleX(-1)';
-    }
-  }
-}
-
-// تابع برای غیرفعال کردن ماهی‌ها
-function deactivateFishes() {
-  for (let fish of fishArray) {
-    // مخفی کردن
-    fish.style.display = 'none';
-    // توقف انیمیشن
-    fish.style.animation = '';
-  }
-}
 
 // کنترل اسکرول برای فعال‌سازی
 window.addEventListener('scroll', () => {

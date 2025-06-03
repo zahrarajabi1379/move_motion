@@ -154,14 +154,14 @@ text-align: justify;
       }
 
 
-      @keyframes moveRight {
-        0% { left: -50px; }
-        100% { left: 50%; }
-      }
-      
-      @keyframes moveLeft {
-        0% { left: 50%; }
-        100% { left: 100%; }
+@keyframes moveRight {
+  0% { right: -80px; }
+  100% { right: 50%; }
+}
+
+@keyframes moveLeft {
+  0% { right: 50%; }
+  100% { right: -80px; }
       }
       #smallShark {
         display:none; 
@@ -206,7 +206,14 @@ text-align: justify;
         transition: background-color 1s ease;
         z-index: -1; 
       }
-      
+      #sky.day {
+  background-color: #87CEEB; 
+}
+
+#sky.night {
+  background-color: #001833; 
+ 
+}
       #sun {
         width: 80px;
         height: 80px;
@@ -234,21 +241,18 @@ text-align: justify;
         z-index: 9999;
         filter: drop-shadow(0 0 20px rgb(255, 255, 255));
       }
-      .littleFish{
-        position: fixed; 
-        width: 30px; 
-  height: auto;
-        pointer-events: none; 
-        overflow: hidden;
-        z-index: 10
-      }
-      .poi {
-        position: absolute;
-        width: 50px; 
-        height: auto;
-        top: 60%; 
-        animation: swimRight linear infinite;
-      }
+.littleFish{
+   position: absolute;
+  width: 30px;
+  height: 20px;
+  z-index: 10000;
+}
+.littleFishRight{
+     position: absolute;
+  width: 30px;
+  height: 20px;
+  z-index: 10000;
+}
 
 @keyframes moveRight {
   0% { left: -50px; }
