@@ -1,298 +1,395 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
 }
 
-body{
-    background: linear-gradient(lightblue , white);
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    perspective: 1000px;  
-    margin: 0;  
+body {
+  background: linear-gradient(lightblue, white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  perspective: 1000px;
+  margin: 0;
 }
 
-header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10000;
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10000;
 }
 
-header .logo{
-    color: #01878f;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 2em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+header .logo {
+  color: #01878f;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-header ul{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+header ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-header ul li{
-    list-style: none;
-    margin-left: 20px;
+header ul li {
+  list-style: none;
+  margin-left: 20px;
 }
 
-header ul li a{
-text-decoration: none;
-color: white;
-padding: 6px 15px;
-border-radius: 20px;
+header ul li a {
+  text-decoration: none;
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
 }
 
 header ul li a:hover,
-header ul li a.active{
-background: white;
-color: cadetblue;
+header ul li a.active {
+  background: white;
+  color: cadetblue;
 }
 
-section{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    padding: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    perspective: 1000px
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1000px;
 }
 
-section::before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to top, #01878f, transparent);
-    z-index: 1000;
+section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to top, #01878f, transparent);
+  z-index: 1000;
 }
 
-section img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    pointer-events: none;
+section img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  pointer-events: none;
 }
 
-section img#water{
-    z-index: 10;
+section img#water {
+  z-index: 10;
 }
 
-#text{
-    position: absolute;
-    color: white;
-    white-space: nowrap;
-    font-size: 7.5vw;
-    z-index: 9;
-    right: -920px;
+#text {
+  position: absolute;
+  color: white;
+  white-space: nowrap;
+  font-size: 7.5vw;
+  z-index: 9;
+  right: -920px;
 }
 
-#btn{
-    text-decoration: none;
-    padding: 8px 30px;
-    border-radius: 40px;
-    background: white;
-    color: rgb(95, 160, 99);
-    font-size: 1.5em;
-    display: inline-block;
-    z-index: 9;
-    transform: translateY(100px);
+#btn {
+  text-decoration: none;
+  padding: 8px 30px;
+  border-radius: 40px;
+  background: white;
+  color: rgb(95, 160, 99);
+  font-size: 1.5em;
+  display: inline-block;
+  z-index: 9;
+  transform: translateY(100px);
 }
 
-.sec{
-    position: relative;
-    padding: 100px;
-    background: #01878f;
+.sec {
+  position: relative;
+  padding: 100px;
+  background: #01878f;
 }
 
-.sec h2{
-font-size: 2.5em;
-margin-bottom: 10px;
-color: white;
+.sec h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: white;
 }
 
-.sec p{
-    font-size: 1.2em;
-color: white;
-text-align: justify;
+.sec p {
+  font-size: 1.2em;
+  color: white;
+  text-align: justify;
 }
-#bird1, #bird2 {
-    transform-style: preserve-3d;
-    position: absolute;
-    transition: transform 0.3s ease;
-    }
-    .fish {
-        position: fixed;
-        top: 50%;
-        width: 200px;
-        height: 180px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        opacity: 0;
-        transform: translateY(-50%);
-        transition: all 1s ease;
-        z-index: 999;
-      }
-
-
-@keyframes moveRight {
-  0% { right: -80px; }
-  100% { right: 50%; }
+#bird1,
+#bird2 {
+  transform-style: preserve-3d;
+  position: absolute;
+  transition: transform 0.3s ease;
+}
+.fish {
+  position: fixed;
+  top: 50%;
+  width: 200px;
+  height: 180px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: all 1s ease;
+  z-index: 999;
 }
 
-@keyframes moveLeft {
-  0% { right: 50%; }
-  100% { right: -80px; }
-      }
-      #smallShark {
-        display:none; 
-        width:50px; 
-        height:30px; 
-        background:red; 
-        position:absolute; 
-        top:70%; 
-        right:-50px; 
-        z-index: 20;
-      }
-      
-      #bigShark {
-        display:none; 
-        width:80px; 
-        height:40px; 
-        background:blue;
-       position:absolute; 
-       top:75%; 
-       left:-80px;
-        z-index: 20;
-      }
-      
-      #fishLeft {
-        left: -100px;
-      }
-      
-      #fishRight {
-        right: -100px;
-      }
-      
-      #smallShark, #bigShark {
-        opacity: 0;
-      }
-      #sky {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #87ceeb; 
-        transition: background-color 1s ease;
-        z-index: -1; 
-      }
-      #sky.day {
-  background-color: #87CEEB; 
+#smallShark {
+  width: 300px;
+  height: 200px;
+  opacity: 0;
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+#bigShark {
+  display: none;
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  top: 75%;
+  left: -80px;
+  z-index: 9999;
+}
+
+#fishLeft {
+  left: -100px;
+}
+
+#fishRight {
+  right: -100px;
+}
+
+#smallShark
+{
+  right: -150px;
+}
+
+#bigShark{
+  left : -150px;
+}
+#sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #87ceeb;
+  transition: background-color 1s ease;
+  z-index: -1;
+}
+#sky.day {
+  background-color: #87ceeb;
 }
 
 #sky.night {
-  background-color: #001833; 
- 
+  background-color: #001833;
 }
-      #sun {
-        width: 80px;
-        height: 80px;
-        background-size: cover;
-        background-position: center;
-        position: fixed;
-        top: 20%;
-        left: 100%;
-        transition: all 1s ease;
-        z-index: 9999;
-        filter: drop-shadow(0 0 20px yellow);
-      }
-      
-      #moon {
-        width: 80px;
-        height: 80px;
-        background-size: cover;
-        background-position: center;
-        position: fixed;
-        top: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 1s ease, left 1s ease;
-        z-index: 9999;
-        filter: drop-shadow(0 0 20px rgb(255, 255, 255));
-      }
-.littleFish{
-   position: absolute;
+#sun {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 20%;
+  left: 100%;
+  transition: all 1s ease;
+  z-index: 9999;
+  filter: drop-shadow(0 0 20px yellow);
+}
+
+#moon {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1s ease, left 1s ease;
+  z-index: 9999;
+  filter: drop-shadow(0 0 20px rgb(255, 255, 255));
+}
+.littleFish {
+  position: absolute;
   width: 30px;
   height: 20px;
   z-index: 10000;
 }
-.littleFishRight{
-     position: absolute;
+.littleFishRight {
+  position: absolute;
   width: 30px;
   height: 20px;
   z-index: 10000;
 }
 
 @keyframes moveRight {
-  0% { left: -50px; }
-  100% { left: 100%; }
+  0% {
+    left: -50px;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 @keyframes moveLeft {
-  0% { right: -50px; }
-  100% { right: 100%; }
-}  
-.shag {  
-  position: absolute;  
-  bottom: 50px;  
-  width: 80px;  
-  display: none;  
-}  
-.eagle {  
-  position: absolute;  
-  top: 100px;  
-  width: 80px;  
+  0% {
+    right: -50px;
+  }
+  100% {
+    right: 100%;
+  }
+}
+.shag {
+  position: absolute;
+  bottom: 50px;
+  width: 80px;
+  display: none;
+}
+.eagle {
+  position: absolute;
+  top: 100px;
+  width: 80px;
   cursor: pointer;
-  display: none;  
-}  
+  display: none;
+}
 #owl {
   width: 50px;
-  height: auto; 
-  cursor:pointer;
-}
- 
-@keyframes moveRight {  
-  0% { left: -80px; }  
-  100% { left: 100%; }  
-}  
-@keyframes moveLeft {  
-  0% { right: -80px; }  
-  100% { right: 100%; }  
-} 
-#lion {
-  width: 200px; 
   height: auto;
-  position: absolute; 
-  z-index: 10; 
+  cursor: pointer;
 }
+
+@keyframes moveRight {
+  0% {
+    left: -80px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes moveLeft {
+  0% {
+    right: -80px;
+  }
+  100% {
+    right: 100%;
+  }
+}
+#lion {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  z-index: 10;
+}
+
+#line-container {
+  position: fixed;
+  top: 0;
+  left: 70%;
+  width: 100%;
+  z-index: 9999;
+ transform: translateX(-50%);
+}
+
+#black-line {
+  width: 2px;
+  height: 0; 
+  background-color: black;
+  margin-top: 0;
+  transition: height 1s linear;
+}
+
+#fishing-hook {
+  width: 50px;
+  height: 50px;
+  top: 0;
+  left: 0;
+  background: url(../image/fishingHook.png) no-repeat center;
+  background-size: contain; 
+ position: relative;
+ top: 0;
+ transition: top 1s linear;
+ display: none;
+}
+
+/* body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background: #eef;
+  padding-top: 50px;
+}
+#sky {
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  position: relative;
+  background: #87CEEB; /* آسمان آبی */
+  /* border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2); */
+/* }
+.sun, .moon, .cloud, .rain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sun {
+  width: 80px;
+  height: 80px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 30px yellow;
+}
+.moon {
+  width: 70px;
+  height: 70px;
+  background: lightgray;
+  border-radius: 50%;
+  box-shadow: inset -10px 0 20px #222;
+} */
+/* .cloud {
+  width: 120px;
+  height: 70px;
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: inset -10px 0 20px #222;
+}
+.rain {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: #00f;
+  top: 70%;
+  animation: rainFall 1s linear infinite;
+}
+@keyframes rainFall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(50px); } */
+/* }  */

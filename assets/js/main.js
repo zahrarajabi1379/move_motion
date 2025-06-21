@@ -17,7 +17,7 @@ const viewportHeight = window.innerHeight;
 const pageHeight = document.documentElement.scrollHeight;
 const windowHeight = window.innerHeight;
 
-clouds.style.top = value + 'px';
+// clouds.style.top = value + 'px';
 bird1.style.transform = `translateX(${value * 1.2}px) translateZ(${value * 0.5}px)`;
 bird2.style.transform = `translateX(${-value * 1.2}px) translateZ(${-value * 0.5}px)`;
 forest.style.top = value + 'px';
@@ -49,6 +49,7 @@ if (scrollY > viewportHeight * 0.4 && !hasEnteredWater) {
   document.getElementById('fishRight').style.right = '-100px';
 }
 });
+
 
 
 
@@ -176,22 +177,22 @@ function showOwlOnTree() {
   const owl = document.getElementById('owl');
   owl.style.display = 'block';
   owl.style.position = 'absolute';
-  owl.style.top = '300px'; // ارتفاع روی درخت
-  owl.style.left = '10%'; 
-  owl.style.width = '90px'; 
+  owl.style.top = '220px'; // ارتفاع روی درخت
+  owl.style.left = '8%'; 
+  owl.style.width = '70px'; 
   owl.style.zIndex = 20; // سمت چپ
 }
 
 const owlImg = document.getElementById('owl');
-const owlSound = document.getElementById('owlSound');
 
-owlImg.addEventListener('click', () => {
+const owlSound = new Audio('assets/audios/owl-sound-sherlock.mp3');
+$('document').click('#owl',function() {
+  console.log('کلیک روی جغد');
   owlSound.currentTime = 0;
-  owlSound.play().catch(e => {
-    console.log('پخش صدا امکان‌پذیر نیست، ممکن است مرورگر تداخل داشته باشد یا فایل مشکل دارد.');
+  owlSound.play().catch(function(e) {
+    console.log('پخش صدا امکان‌پذیر نیست، شاید مشکل فایل است یا سیاست‌های مرورگر.', e);
   });
 });
-
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
 
@@ -222,14 +223,26 @@ function hideOwl() {
   document.getElementById('owl').style.display = 'none';
 }
 
-const lionImage = document.getElementById('lion');
-const lionSound = document.getElementById('lionSound');
 
-lionImage.addEventListener('click', () => {
-  lionSound.currentTime = 0; 
+
+
+
+const lionImage = document.getElementById('lion');
+;
+
+const lionSound = new Audio('assets/audios/lion.mp3');
+
+document.getElementById('lion').addEventListener('click', (e) => {
+  e.stopPropagation(); // جلوگیری از انتشار رویداد
+  lionSound.currentTime = 0;
   lionSound.play();
 });
 
+document.getElementById('owl').addEventListener('click', (e) => {
+  e.stopPropagation();
+  owlSound.currentTime = 0;
+  owlSound.play();
+});
 // نشان دادن شیر روی صخره
 function showLion() {
   const lion = document.getElementById('lion');
@@ -341,23 +354,23 @@ document.querySelectorAll('.littleFish, .littleFishRight').forEach(fish => {
 
 
 // کنترل اسکرول برای فعال‌سازی
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const viewportHeight = window.innerHeight;
+// window.addEventListener('scroll', () => {
+//   const scrollY = window.scrollY;
+//   const viewportHeight = window.innerHeight;
 
-  const shallowStart = viewportHeight * 0.4; // 40%
-  const shallowEnd = viewportHeight * 0.6;   // 60%
+//   const shallowStart = viewportHeight * 0.4; // 40%
+//   const shallowEnd = viewportHeight * 0.6;   // 60%
 
-  // اگر در منطقه کم‌عمق هستید، فعالشون کنید
-  if (scrollY >= shallowStart && scrollY <= shallowEnd) {
-    activateFishes();
-  } else {
-    deactivateFishes();
-  }
-});
+//   // اگر در منطقه کم‌عمق هستید، فعالشون کنید
+//   if (scrollY >= shallowStart && scrollY <= shallowEnd) {
+//     activateFishes();
+//   } else {
+//     deactivateFishes();
+//   }
+// });
 
 $.ajax({
-  url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${b1d63a3f460a03e91d03d73d807ef1ca}&units=metric`,
+  url: `https://api.openweathermap.org/data/2.5/weather?q=Sari&appid=$b1d63a3f460a03e91d03d73d807ef1ca&units=metric`,
   method: 'GET',
   success: function(data) {
     const weatherMain = data.weather[0].main;
@@ -372,4 +385,212 @@ $.ajax({
   error: function() {
     console.error('Error fetching weather data');
   }
+});
+
+
+
+// تابع برای گرفتن وضعیت هوا  
+// async function fetchWeather() {  
+//   const apiKey = 'b1d63a3f460a03e91d03d73d807ef1ca'; // جایگزین کنید با کلید API خود  
+//   const url = `https://api.openweathermap.org/data/2.5/weather?q=Sari&appid=${apiKey}&units=metric&lang=fa`;  
+//   try {  
+//     const response = await fetch(url);  
+//     if (!response.ok) {  
+//       alert('خطا در دریافت داده هواشناسی');  
+//       return;  
+//     }  
+//     const data = await response.json();  
+//     updateSky(data);  
+//   } catch (error) {  
+//     alert('خطای شبکه یا سرویس دنیا نبود');
+//   }  
+// }  
+
+// تابع برای بروزرسانی آسمان بر اساس وضعیت هوا  
+// function updateSky(data) {  
+//   const main = data.weather[0].main;  
+//   const description = data.weather[0].description;  
+//   const hour = new Date().getHours();  
+//   const sky = document.getElementById('sky');  
+
+//   // پاک کردن وضعیت قبلی  
+//   sky.innerHTML = '';  
+
+//   if (main === 'Clear') {  
+//     if (hour >= 6 && hour < 18) {  
+//       // روز، خورشید  
+//       sky.innerHTML = '<div class="sun"></div>';  
+//     } else {  
+//       // شب، ماه  
+//       sky.innerHTML = '<div class="moon"></div>';  
+//     }  
+//   } else if (main === 'Clouds') {  
+//     // ابر  
+//     sky.innerHTML = '<div class="cloud"></div>';  
+//   } else if (main === 'Rain') {  
+//     // ابر و بارون  
+//     sky.innerHTML = '<div class="cloud"></div>';  }
+//     };
+
+
+
+
+
+$(document).ready(function(){
+  let smallSharkTriggered = false;
+  let bigSharkTriggered = false;
+
+  $(window).on("scroll", function(){
+    const scrollTop = $(window).scrollTop();
+    const docHeight = $(window).height();
+    const winHeight = $(window).height();
+    const scrollPercent = (scrollTop/ (docHeight - winHeight))*100;
+
+    if (scrollPercent >=80 && !smallSharkTriggered){
+      smallSharkTriggered = true;
+
+      const $smallShark = $("#smallShark");
+
+      $smallShark.css({
+        right : "-200px",
+        left : "auto",
+        display : "block",
+        position : "absolute",
+        transform: "scaleX(1)",
+        transition: "right 2s linear, transform 0.5s"
+      });
+
+setTimeout(() =>{
+  $smallShark.css("right", "50%");
+
+  setTimeout(() =>{
+    $smallShark.css("transform", "scaleX(-1)");
+    $smallShark.css("transition", "right 0.7s linear, transform 0.5s");
+
+    setTimeout(()=>{
+      $smallShark.css("right", "-150px");
+
+setTimeout(()=>{
+  $smallShark.css("display", "none");
+},700);
+
+    },100);
+  },2000);
+},100);
+    }
+
+    if(scrollPercent>= 90 && !bigSharkTriggered){
+      bigSharkTriggered = true;
+      
+      const $bigShark = $("#bigShark");
+
+      $bigShark.css({
+        left : "-300px",
+        right : "auto",
+        display : "block",
+        position : "absolute",
+        transform :"scaleX(1)",
+        transition: "left 2.5s linear"
+      });
+
+setTimeout(()=>{
+  $bigShark.css("left", "100%");
+}, 100);
+
+setTimeout(()=>{
+  $bigShark.css("display", "none");
+},3000);
+    }
+  });
+});
+
+// const shark = document.getElementById('shark');
+// let hasAnimated = false; // برای اینکه یک‌بار اجرا شود
+
+// function showShark() {
+//   shark.style.opacity = 1;
+// }
+
+// function moveToCenter() {
+//   return new Promise((resolve) => {
+//     const windowWidth = window.innerWidth;
+//     const targetLeft = (windowWidth - shark.offsetWidth) / 2;
+//     shark.style.transition = 'all 2s ease';
+//     shark.style.left = `${targetLeft}px`;
+//     shark.style.right = 'auto'; // خاموش کردن right
+//     setTimeout(() => {
+//       resolve();
+//     }, 2000);
+//   });
+// }
+
+// function returnFast() {
+//   return new Promise((resolve) => {
+//     shark.style.transition = 'all 0.3s ease';
+//     shark.style.right = '20px';
+//     shark.style.left = 'auto'; // خاموش کردن left
+//     setTimeout(() => {
+//       resolve();
+//     }, 300);
+//   });
+// }
+
+// window.addEventListener('scroll', async () => {
+//   if (hasAnimated) return; // فقط یک بار انجام بده
+//   const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+//   if (scrollPercent >= 80) {
+//     hasAnimated = true; // یکبار انجام بده
+//     showShark(); // ظاهر شدن کوسه
+//     await moveToCenter(); // حرکت به وسط
+//     // چون نمی‌خواهی با اسکرول زیاد، دوباره کار کند، اینجا توقف می‌کنیم
+//     // اگر می‌خواهی برگردد، برعکسش رو بگذار
+//     // await returnFast();
+//   }
+// });
+
+
+
+//  
+
+
+$(document).ready(function(){
+  let scrollTimer;
+  let isHookDown = false;
+
+  function dropHook(){
+    $("#black-line").css("height", "500px");
+    $("#fishing-hook").css({top:"200px", display:"block"});
+    isHookDown = true;
+  }
+
+function resetHook(){
+  $("#black-line").css("height", "0px");
+  $("#fishing-hook").css({top : "0px" , display :"none"});
+  isHookDown = false;
+}
+
+function startInactivityTimer(){
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(() =>{
+    if (!isHookDown) dropHook();
+  }, 4000);
+}
+
+$(window).on("scroll", function(){
+  if (isHookDown){
+    $("#black-line").css("transition", "height 0.3s ease-out");
+    $("#fishing-hook").css("transition", "top 0.3s ease-out");
+    resetHook();
+
+    setTimeout(() =>{
+      $("#black-line").css("transition", "height 1s linear");
+      $("#fishing-hook").css("transition", "top 1s linear");
+    }, 3000)
+  }
+startInactivityTimer();
+
+});
+startInactivityTimer()
+
+
 });
