@@ -485,21 +485,21 @@ setTimeout(()=>{
       const $bigShark = $("#bigShark");
 
       $bigShark.css({
-        left : "-300px",
+        left : "-900px",
         right : "auto",
         display : "block",
         position : "absolute",
         transform :"scaleX(1)",
-        transition: "left 2.5s linear"
+        transition: "left 10s linear"
       });
 
 setTimeout(()=>{
   $bigShark.css("left", "100%");
-}, 100);
+}, 700);
 
 setTimeout(()=>{
   $bigShark.css("display", "none");
-},3000);
+},7000);
     }
   });
 });
@@ -558,7 +558,7 @@ $(document).ready(function(){
   let isHookDown = false;
 
   function dropHook(){
-    $("#black-line").css("height", "500px");
+    $("#black-line").css("height", "1000px");
     $("#fishing-hook").css({top:"200px", display:"block"});
     isHookDown = true;
   }
@@ -585,7 +585,7 @@ $(window).on("scroll", function(){
     setTimeout(() =>{
       $("#black-line").css("transition", "height 1s linear");
       $("#fishing-hook").css("transition", "top 1s linear");
-    }, 3000)
+    }, 6000)
   }
 startInactivityTimer();
 
