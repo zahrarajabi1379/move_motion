@@ -121,7 +121,7 @@ function updateSunMoon() {
 
 setInterval(updateSunMoon, 60000);
 updateSunMoon();
-
+updateWaterLevel();
 
 
 // تابع تشخیص شب یا روز بر اساس ساعت
@@ -186,12 +186,10 @@ function showOwlOnTree() {
 const owlImg = document.getElementById('owl');
 
 const owlSound = new Audio('assets/audios/owl-sound-sherlock.mp3');
-$('document').click('#owl',function() {
-  console.log('کلیک روی جغد');
+$('#owl').on('click', function(){
+  const owlSound = document.getElementById('owlSound');
   owlSound.currentTime = 0;
-  owlSound.play().catch(function(e) {
-    console.log('پخش صدا امکان‌پذیر نیست، شاید مشکل فایل است یا سیاست‌های مرورگر.', e);
-  });
+  owlSound.play();
 });
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -230,11 +228,9 @@ function hideOwl() {
 const lionImage = document.getElementById('lion');
 ;
 
-const lionSound = new Audio('assets/audios/lion.mp3');
-
-document.getElementById('lion').addEventListener('click', (e) => {
-  e.stopPropagation(); // جلوگیری از انتشار رویداد
-  lionSound.currentTime = 0;
+$('#lion').on('click', function(){
+  const lionSound = document.getElementById('lionSound');
+  lionSound.currentTime= 0;
   lionSound.play();
 });
 
@@ -353,87 +349,82 @@ document.querySelectorAll('.littleFish, .littleFishRight').forEach(fish => {
 });
 
 
-// کنترل اسکرول برای فعال‌سازی
-// window.addEventListener('scroll', () => {
-//   const scrollY = window.scrollY;
-//   const viewportHeight = window.innerHeight;
-
-//   const shallowStart = viewportHeight * 0.4; // 40%
-//   const shallowEnd = viewportHeight * 0.6;   // 60%
-
-//   // اگر در منطقه کم‌عمق هستید، فعالشون کنید
-//   if (scrollY >= shallowStart && scrollY <= shallowEnd) {
-//     activateFishes();
-//   } else {
-//     deactivateFishes();
+// $.ajax({
+//   url: `https://api.openweathermap.org/data/2.5/weather?q=Sari&appid=$b1d63a3f460a03e91d03d73d807ef1ca&units=metric`,
+//   method: 'GET',
+//   success: function(data) {
+//     const weatherMain = data.weather[0].main;
+//     if (weatherMain === 'Rain') {
+//       showRain();
+//     } else if (weatherMain === 'Clouds') {
+//       showClouds();
+//     } else if (weatherMain === 'Clear') {
+//       showClear();
+//     }
+//   },
+//   error: function() {
+//     console.error('Error fetching weather data');
 //   }
 // });
 
-$.ajax({
-  url: `https://api.openweathermap.org/data/2.5/weather?q=Sari&appid=$b1d63a3f460a03e91d03d73d807ef1ca&units=metric`,
-  method: 'GET',
-  success: function(data) {
-    const weatherMain = data.weather[0].main;
-    if (weatherMain === 'Rain') {
-      showRain();
-    } else if (weatherMain === 'Clouds') {
-      showClouds();
-    } else if (weatherMain === 'Clear') {
-      showClear();
-    }
-  },
-  error: function() {
-    console.error('Error fetching weather data');
-  }
-});
+  const apikey= "b1d63a3f460a03e91d03d73d807ef1ca";
+  const city = "Sari,IR";
+
+//   function fetchWeather(){
+//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${Sari}&appid=${b1d63a3f460a03e91d03d73d807ef1ca}`;
+
+//     $.getJSON(url, function(data){
+//       const weatherMain = data.weather[0].main;
+//       const icon = data.weather[0].icon;
+//       const isDay = icon.endWish("d");
+
+//       updateSkyElements(isDay, weatherMain);
+//       updateWaterLevel(isDay);
+//     })
+//     .fail(function(jqXHR){
+//       console.error("Error fetching weather:" , jqXHR.responseText);
+//     });
+//   }
+
+//   fetchWeather();
+//   setInterval(fetchWeather, 10*60*1000);
 
 
 
-// تابع برای گرفتن وضعیت هوا  
-// async function fetchWeather() {  
-//   const apiKey = 'b1d63a3f460a03e91d03d73d807ef1ca'; // جایگزین کنید با کلید API خود  
-//   const url = `https://api.openweathermap.org/data/2.5/weather?q=Sari&appid=${apiKey}&units=metric&lang=fa`;  
-//   try {  
-//     const response = await fetch(url);  
-//     if (!response.ok) {  
-//       alert('خطا در دریافت داده هواشناسی');  
-//       return;  
-//     }  
-//     const data = await response.json();  
-//     updateSky(data);  
-//   } catch (error) {  
-//     alert('خطای شبکه یا سرویس دنیا نبود');
-//   }  
-// }  
+//   function  updateSkyElements(isDay, weatherMain){
+//     const $sun = $("#sun");
+//     const $moon = $("#moon");
+//     const $clouds = $("#clouds");
 
-// تابع برای بروزرسانی آسمان بر اساس وضعیت هوا  
-// function updateSky(data) {  
-//   const main = data.weather[0].main;  
-//   const description = data.weather[0].description;  
-//   const hour = new Date().getHours();  
-//   const sky = document.getElementById('sky');  
+// if(isDay){
+//   $sun.show().css("opacity", 1);
+//   $moon.hide();
+// }else{
+//   $moon.show().css("opacity", 1);
+//   $sun.hide();
+// }
+// if(weatherMain === "clouds"){
+//   $clouds.show();
+//   if(isDay)$sun.css("opacity", 0.4);
+//   else $moon.css("opacity", 0.4);
+// }else{
+//   $clouds.hide();
+// }
+//  }
 
-//   // پاک کردن وضعیت قبلی  
-//   sky.innerHTML = '';  
+//  function updateWaterLevel(isDay){
+//   const $water = $("#water");
+//   const $rocks = $("#rocks");
 
-//   if (main === 'Clear') {  
-//     if (hour >= 6 && hour < 18) {  
-//       // روز، خورشید  
-//       sky.innerHTML = '<div class="sun"></div>';  
-//     } else {  
-//       // شب، ماه  
-//       sky.innerHTML = '<div class="moon"></div>';  
-//     }  
-//   } else if (main === 'Clouds') {  
-//     // ابر  
-//     sky.innerHTML = '<div class="cloud"></div>';  
-//   } else if (main === 'Rain') {  
-//     // ابر و بارون  
-//     sky.innerHTML = '<div class="cloud"></div>';  }
-//     };
+// if(isDay){
+//   $water.css("height", "250px");
+//   $rocks.css("bottom", "-50px");
+// }else{
+//   $water.css("height", "100px");
+//   $rocks.css("bottom", "0px");
+// }
 
-
-
+//  }
 
 
 $(document).ready(function(){
@@ -593,4 +584,19 @@ startInactivityTimer();
 startInactivityTimer()
 
 
+});
+
+
+function updateWaterLevel(){
+  const moonVisible = $("#moon").css("display") !== "none";
+if(moonVisible){
+  $("#water").css("height", "100px");
+  $("#rocks").css("bottom", "0px");
+}else{
+  $("#water").css("height", "250px");
+  $("#rocks").css("botom", "-50px");
+}
+}
+$(document).ready(function(){
+  updateWaterLevel();
 });
