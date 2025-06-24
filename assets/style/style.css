@@ -90,13 +90,15 @@ section img {
   top: 0;
   left: 0;
   object-fit: cover;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 section img#water {
-  z-index: 10;
+  z-index: 87;
 }
-
+#forest{
+  z-index: 80;
+}
 #text {
   position: absolute;
   color: white;
@@ -114,7 +116,8 @@ section img#water {
   color: rgb(95, 160, 99);
   font-size: 1.5em;
   display: inline-block;
-  z-index: 9;
+  position: relative;
+  z-index: 89;
   transform: translateY(100px);
 }
 
@@ -143,7 +146,7 @@ section img#water {
 }
 .fish {
   position: fixed;
-  top: 50%;
+  top: 60%;
   width: 200px;
   height: 180px;
   background-size: contain;
@@ -217,7 +220,7 @@ section img#water {
   top: 20%;
   left: 100%;
   transition: all 1s ease;
-  z-index: 9999;
+  z-index: 60;
   filter: drop-shadow(0 0 20px yellow);
 }
 
@@ -232,19 +235,19 @@ section img#water {
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 1s ease, left 1s ease;
-  z-index: 9999;
+  z-index: 60;
   filter: drop-shadow(0 0 20px rgb(255, 255, 255));
 }
 .littleFish {
   position: absolute;
-  width: 30px;
-  height: 20px;
+  width: 60px;
+  height: 50px;
   z-index: 10000;
 }
 .littleFishRight {
   position: absolute;
-  width: 30px;
-  height: 20px;
+  width: 60px;
+  height: 50px;
   z-index: 10000;
 }
 
@@ -327,12 +330,11 @@ section img#water {
 #fishing-hook {
   width: 50px;
   height: 50px;
-  top: 0;
-  left: 0;
+  top: -7px;
+  left: -33px;
   background: url(../image/fishingHook.png) no-repeat center;
   background-size: contain; 
  position: relative;
- top: 0;
  transition: top 1s linear;
  display: none;
 }
@@ -346,14 +348,14 @@ section img#water {
   width: 100%;
   height: 100%;
   transition: all 1.5s ease;
-  z-index: 10;
+  z-index: 87;
 }
 #rocks{
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 85;
   transition: all 1.5s ease;
 }
 
@@ -373,7 +375,6 @@ section img#water {
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0;
 }
 
 #water{
@@ -389,59 +390,3 @@ section img#water {
   width: 100%;
   transition: bottom 1s ease;
 }
-
-/* body {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background: #eef;
-  padding-top: 50px;
-}
-#sky {
-  width: 300px;
-  height: 300px;
-  margin: 20px auto;
-  position: relative;
-  background: #87CEEB; /* آسمان آبی */
-  /* border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2); */
-/* }
-.sun, .moon, .cloud, .rain {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.sun {
-  width: 80px;
-  height: 80px;
-  background: yellow;
-  border-radius: 50%;
-  box-shadow: 0 0 30px yellow;
-}
-.moon {
-  width: 70px;
-  height: 70px;
-  background: lightgray;
-  border-radius: 50%;
-  box-shadow: inset -10px 0 20px #222;
-} */
-/* .cloud {
-  width: 120px;
-  height: 70px;
-  background: #fff;
-  border-radius: 50px;
-  box-shadow: inset -10px 0 20px #222;
-}
-.rain {
-  position: absolute;
-  width: 4px;
-  height: 20px;
-  background: #00f;
-  top: 70%;
-  animation: rainFall 1s linear infinite;
-}
-@keyframes rainFall {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(50px); } */
-/* }  */
