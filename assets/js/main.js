@@ -8,6 +8,9 @@ const btn = document.getElementById("btn");
 const leftFish = document.getElementById("fishLeft");
 const rightFish = document.getElementById("fishRight");
 let currentScroll = 0;
+const fishes = document.querySelectorAll(".littleFish");
+console.log(fishes);
+const redFishes = document.querySelectorAll(".littleFishRight");
 
 const soundEnter = document.getElementById("soundEnter");
 const soundExit = document.getElementById("soundExit");
@@ -46,8 +49,8 @@ window.addEventListener("scroll", function () {
 
   // وقتی به منطقه آب رسیدی (مثلاً در 60% صفحه)
   if (scrollY > currentScroll) {
-    console.log("scrollY::", scrollY);
-    console.log("currentScroll::", currentScroll);
+    // console.log("scrollY::", scrollY);
+    // console.log("currentScroll::", currentScroll);
     rightFish.style.transform = "rotateY(0deg)";
     leftFish.style.transform = "rotateY(0deg)";
     currentScroll = scrollY;
@@ -60,11 +63,11 @@ window.addEventListener("scroll", function () {
 
   if (scrollY > windowHeight * 0.4) {
     leftFish.style.opacity = 1;
-    leftFish.style.left = value + "px";
+    leftFish.style.left = value * 1.5 + "px";
   }
   if (scrollY > windowHeight * 0.9) {
     rightFish.style.opacity = 1;
-    rightFish.style.right = value + "px";
+    rightFish.style.right = value * 1.5 + "px";
   } else {
     leftFish.style.opacity = 0;
     rightFish.style.opacity = 0;
@@ -147,7 +150,7 @@ updateWaterLevelVisible();
 // تابع بررسی شب یا روز
 function checkDayNight() {
   const hour = new Date().getHours();
-  return hour >= 19 || hour < 6; // شب از ۷ شب تا ۶ صبح
+  return hour >= 18 || hour < 6; // شب از ۷ شب تا ۶ صبح
 }
 
 let currentNight = null;
@@ -260,7 +263,7 @@ function showLion() {
   lion.style.left = "10%";
   lion.style.top = "320px";
   lion.style.width = "150px";
-  lion.style.zIndex = 20;
+  lion.style.zIndex = 100;
 }
 
 // مخفی کردن شیر
@@ -313,33 +316,92 @@ const oceanSound = document.getElementById("oceanSound");
 try {
   forestSound.play();
   oceanSound.play();
+  oceanSound.volume = 0;
 } catch (e) {
   console.log("پخش صدا نیاز به تعامل کاربر دارد.");
 }
 
+// function moveFish(fish) {
+//   const maxTop = 105; // بیشترین ارتفاع
+//   const minTop = 95; // کمترین ارتفاع، برای حرکت روی سطح آب
+//   const maxLeft = 90; // بر حسب درصد یا پیکسل
+//   const minLeft = 0;
+
+//   // تصادفی موقعیت جدید
+//   const newTop = Math.random() * (maxTop - minTop) + minTop + "%";
+//   const newLeft = Math.random() * (maxLeft - minLeft) + minLeft * 4 + "%";
+
+//   fish.style.top = newTop;
+//   fish.style.left = newLeft;
+// }
+//******************************* */
+
+fishes.forEach((fish) => {
+  fish.speed = Math.random() * 2 + 1;
+
+  const isMovingRight = Math.random() > 0.5;
+  fish.direction = isMovingRight ? 1 : -1;
+
+  if (fish.direction === -1) {
+    fish.style.transform = "scaleX(-1)";
+  }
+});
+
+redFishes.forEach((fish) => {
+  fish.speed = Math.random() * 2 + 1;
+
+  const isMovingLeft = Math.random() > 0.5;
+  fish.direction = isMovingLeft ? 1 : -1;
+
+  if (fish.direction === -1) {
+    fish.style.transform = "scaleX(-1)";
+  }
+});
+
+function updateFish() {
+  fishes.forEach((fish) => {
+    const currentLeft = parseFloat(fish.style.left);
+    const newLeft = currentLeft + (fish.speed * fish.direction) / 20;
+    fish.style.left = `${newLeft}%`;
+
+    if (fish.direction === 1 && newLeft > 90) {
+      fish.direction = -1;
+      fish.style.transform = "scale(-1)";
+    } else if (fish.direction === -1 && newLeft < 10) {
+      fish.direction = 1;
+      fish.style.transform = "scale(1)";
+    }
+  });
+
+  redFishes.forEach((fish) => {
+    const currentLeft = parseFloat(fish.style.left);
+    const newLeft = currentLeft - (fish.speed * fish.direction) / 30;
+    fish.style.left = `${newLeft}%`;
+
+    if (fish.direction === -1 && newLeft > 90) {
+      fish.direction = 1;
+      fish.style.transform = "scale(1)";
+    } else if (fish.direction === 1 && newLeft < 10) {
+      fish.direction = -1;
+      fish.style.transform = "scale(-1)";
+    }
+  });
+
+  requestAnimationFrame(updateFish);
+}
+
+updateFish();
+
+//******************************* */
 // کنترل حجم صدا بر اساس اسکرول
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   const viewportHeight = window.innerHeight;
 
-  document.querySelectorAll(".littleFish, .littleFishRight").forEach((fish) => {
-    function moveFish() {
-      const maxTop = 105; // بیشترین ارتفاع
-      const minTop = 95; // کمترین ارتفاع، برای حرکت روی سطح آب
-      const maxLeft = 90; // بر حسب درصد یا پیکسل
-      const minLeft = 0;
-
-      // تصادفی موقعیت جدید
-      const newTop = Math.random() * (maxTop - minTop) + minTop + "%";
-      const newLeft = Math.random() * (maxLeft - minLeft) + minLeft * 4 + "%";
-
-      fish.style.top = newTop;
-      fish.style.left = newLeft;
-    }
-
-    setInterval(moveFish, 20000);
-    moveFish();
-  });
+  // document.querySelectorAll(".littleFish, .littleFishRight").forEach((fish) => {
+  //   setInterval(moveFish(fish), 10000);
+  //   moveFish(fish);
+  // });
 
   const startWaterZone = viewportHeight * 0.6; // شروع منطقه آب
   const endWaterZone = viewportHeight * 5; // پایان منطقه آب
@@ -379,43 +441,77 @@ const apikey = "b1d63a3f460a03e91d03d73d807ef1ca";
 const city = "Sari,IR";
 
 function fetchWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric&lang=fa`;
 
   $.getJSON(url, function (data) {
+    console.log("Weather data:", data);
     const weatherMain = data.weather[0].main;
     const icon = data.weather[0].icon;
     const isDay = icon.endsWith("d");
-
     updateSkyElements(isDay, weatherMain);
     updateWaterLevel(isDay);
-  }).fail(function (jqXHR) {
-    console.error("Error fetching weather:", jqXHR.responseText);
+    updateRain(weatherMain);
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+    console.error("Error fetching weather:", textStatus, errorThrown, jqXHR.responseText);
   });
 }
-
-fetchWeather();
-setInterval(fetchWeather, 10 * 60 * 1000);
 
 function updateSkyElements(isDay, weatherMain) {
   const $sun = $("#sun");
   const $moon = $("#moon");
   const $clouds = $("#clouds");
+  const $rain = $("#rain");
 
   if (isDay) {
-    $sun.show().css("opacity", 1);
+    $sun.show();
     $moon.hide();
   } else {
-    $moon.show().css("opacity", 1);
+    $moon.show();
     $sun.hide();
   }
+
   if (weatherMain === "Clouds") {
     $clouds.show();
-    if (isDay) $sun.css("opacity", 0.4);
-    else $moon.css("opacity", 0.4);
+    if (isDay) {
+      $sun.css("opacity", 0.4);
+    } else {
+      $moon.css("opacity", 0.4);
+    }
   } else {
     $clouds.hide();
   }
 }
+function createRainDrops() {
+  const rainContainer = document.getElementById("rain");
+  rainContainer.innerHTML = ""; // پاک کردن قطرات قدیمی
+  const numberOfDrops = 150; // تعداد قطره‌های باران
+
+  for (let i = 0; i < numberOfDrops; i++) {
+    const drop = document.createElement("div");
+    drop.className = "rain-drop";
+
+    // قرار دادن تصادفی عرض و تاخیر شروع
+    drop.style.left = Math.random() * 100 + "%";
+    drop.style.animationDelay = (Math.random() * 2) + "s";
+    drop.style.transform = `rotate(${Math.random() * 15 - 7.5}deg)`;
+
+    rainContainer.appendChild(drop);
+  }
+}
+
+function updateRain(weatherMain) {
+  const $rain = $("#rain");
+  if (["Rain", "Drizzle", "Thunderstorm"].includes(weatherMain)) {
+    $rain.show();
+    createRainDrops();
+  } else {
+    $rain.hide();
+  }
+}
+
+// هر ۱۰ دقیقه وضعیت رو بروزرسانی کن
+fetchWeather();
+setInterval(fetchWeather, 10 * 60 * 1000);
 
 function updateWaterLevel(isDay) {
   const $water = $("#water");
@@ -436,9 +532,10 @@ $(document).ready(function () {
 
   $(window).on("scroll", function () {
     const scrollTop = $(window).scrollTop();
-    const docHeight = $(window).height();
+    const docHeight = $(document.documentElement).height();
     const winHeight = $(window).height();
     const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+    console.log(scrollPercent);
 
     if (scrollPercent >= 80 && !smallSharkTriggered) {
       smallSharkTriggered = true;
@@ -470,6 +567,7 @@ $(document).ready(function () {
           }, 100);
         }, 2000);
       }, 100);
+    } else {
       smallSharkTriggered = false;
     }
 
@@ -494,9 +592,10 @@ $(document).ready(function () {
       setTimeout(() => {
         $bigShark.css("display", "none");
       }, 11000);
+    } else {
+      bigSharkTriggered = false;
     }
   });
-  bigSharkTriggered = false;
 });
 
 $(document).ready(function () {
@@ -542,6 +641,7 @@ $(document).ready(function () {
 });
 
 function updateWaterLevelVisible() {
+  // const moonVisible = true;
   const moonVisible = $("#moon")?.css("display") !== "none";
   if (moonVisible) {
     $("#water").css({ zIndex: "85" });
