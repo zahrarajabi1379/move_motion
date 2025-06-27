@@ -90,7 +90,6 @@ section img {
   top: 0;
   left: 0;
   object-fit: cover;
-  /* pointer-events: none; */
 }
 
 section img#water {
@@ -143,10 +142,11 @@ section img#water {
   transform-style: preserve-3d;
   position: absolute;
   transition: transform 0.3s ease;
+  z-index: 101;
 }
 .fish {
   position: fixed;
-  top: 67%;
+  top: 65%;
   width: 200px;
   height: 180px;
   background-size: contain;
@@ -173,7 +173,7 @@ section img#water {
   width: 500px;
   height: 300px;
   position: absolute;
-  top: 75%;
+  top: 83%;
   left: -80px;
   z-index: 9999;
 }
@@ -193,32 +193,31 @@ section img#water {
 #bigShark {
   left: -150px;
 }
-  #rain {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 10;
-    display: none; /* پنهان در حالت عادی */
-  }
+#rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 105;
+  display: none; }
 
-  .rain-drop {
-    position: absolute;
-    width: 2px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.6);
-    top: -20px;
-    animation: fall 0.5s linear infinite;
-  }
+.rain-drop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  top: -20px;
+  animation: fall 0.5s linear infinite;
+}
 
-  @keyframes fall {
-    to {
-      transform: translateY(100vh);
-    }
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
   }
+}
 
 #sky {
   position: fixed;
@@ -338,10 +337,11 @@ section img#water {
   }
 }
 #lion {
+  cursor: pointer;
   width: 200px;
   height: auto;
   position: absolute;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 #line-container {
