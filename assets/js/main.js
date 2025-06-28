@@ -260,18 +260,16 @@ $(lion).on("click", function () {
 });
 
 // هر چند ثانیه چک کن وضعیت
-setInterval(updateScene, 5000); // هر ۵ ثانیه
-// اجرای اولیه
+setInterval(updateScene, 5000); 
 updateScene();
 
-// قبل از هر کار، حتما پخش را شروع کن
+
 
 function playForestSound() {
   forestSound.loop = true;
-  forestSound.volume = 1; // اول کامل باشد
+  forestSound.volume = 1; 
   forestSound.play().catch((e) => {
-    // اجرای autoplay ممکن است محدود باشد، نیاز به تعامل کاربر دارد
-    console.log("پخش خودکار ممکن است نیاز به تعامل کاربر داشته باشد");
+      console.log("پخش خودکار ممکن است نیاز به تعامل کاربر داشته باشد");
   });
 }
 
@@ -405,9 +403,8 @@ function updateSkyElements(isDay, weatherMain) {
 }
 function createRainDrops() {
   const rainContainer = document.getElementById("rain");
-  rainContainer.innerHTML = ""; // پاک کردن قطرات قدیمی
-  const numberOfDrops = 150; // تعداد قطره‌های باران
-
+  rainContainer.innerHTML = ""; 
+  const numberOfDrops = 150; 
   for (let i = 0; i < numberOfDrops; i++) {
     const drop = document.createElement("div");
     drop.className = "rain-drop";
